@@ -40,7 +40,7 @@ class Institution {
     for (const offering of this.courseSchedule[courseName]) {
       if (dept === offering.course.department && number === offering.course.number && year === offering.year && quarter === offering.quarter && sectionNumber === offering.sectionNumber) {
         if (student in this.studentList) {
-          if (offering.registered_students.includes(student)) {
+          if (offering.registeredStudents.includes(student)) {
             console.log(`\n${student.first_name} ${student.last_name} is already enrolled in this course\n`)
           } else {
             offering.register_students([student])
@@ -77,7 +77,7 @@ class Institution {
           console.log(`${instructor.first_name} ${instructor.last_name} is already teaching this course`)
         } else {
           offering.instructor = instructor
-          instructor.courseList.push(offering)
+          instructor.course_list.push(offering)
           console.log(`${instructor.firstName} ${instructor.lastName} has been assigned to teach ${offering}`)
         }
       } else {
@@ -130,7 +130,7 @@ class Institution {
     for (const offering of this.courseSchedule[courseName]) {
       if (dept === offering.course.department && number === offering.course.number && year === offering.year && quarter === offering.quarter && sectionNumber === offering.sectionNumber) {
         console.log(`Registered Students List (${offering})\n------------------------------------------------------------`)
-        for (const student of offering.registered_students) {
+        for (const student of offering.registeredStudents) {
           console.log(`${student.lastName}, ${student.firstName}`)
         }
       }

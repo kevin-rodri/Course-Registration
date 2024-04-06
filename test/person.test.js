@@ -3,22 +3,32 @@ const Institution = require('../src/institution')
 
  
 describe("Person Test Cases", () => {
- test("Given NewPerson When AllConditionsMet Then ReturnsTrue", () => {
 
-    //Given 
-    // My assumptions
-    const testInstitution = new Institution('Quinnipiac University', 'qu.edu');
-
-    // When 
-    // The actions necessary to complete the test case 
-    // Create and validate a person
-    const testPerson = new Person('lastName', 'firstName', 'test school', '1/1/2024', 'student_username', 'affiliation');
-
-    //Then
-    // conditions verifying 
-    expect(2 + 2).toBe(4);
+   let testPerson = null
+   let testInstitution = null
+   beforeEach(() => {
+      testInstitution = new Institution('Quinnipiac University', 'qu.edu')
+      testPerson = new Person('Rodriguez', 'Kevin', testInstitution, '1/1/2024', 'krodriguez', 'student');
+   })
+   
+ test("CreateNewPerson_WhenAllConditionsMet_ReturnsEmail", () => {
+   //Assert
+    expect(testPerson.email).toEqual( `${testPerson.userName}@${testPerson.school.domain}`);
 
  });
 
+
+ test("CreateNewPerson_WhenAllConditionsMet_ReturnsPersonToString", () => {
+
+   //Assert
+   expect(testPerson.toString()).toEqual(
+      '\n' + 'Student Name: ' + testPerson.firstName + ' ' + testPerson.lastName + '\n' +
+            'School: ' + testPerson.school.name + '\n' +
+            'DOB: ' + testPerson.dateOfBirth.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '\n' +
+            'Username: ' + testPerson.userName + '\n' +
+            'affiliation: ' + testPerson.affiliation + '\n')
+   
+
+});
 
 })

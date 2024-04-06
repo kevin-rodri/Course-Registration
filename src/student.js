@@ -46,7 +46,7 @@ class Student extends Person {
     }
 
     for (const x of this.courseList) {
-      if (this.username in x.grades) { // check to see if a grade has already been submitted
+      if (x.get_grade(this)) { // check to see if a grade has already been submitted
         earned += (gradeScale[x.get_grade(this)] * x.course.credits)
         available += x.course.credits
       }

@@ -7,19 +7,19 @@ class CourseOffering {
     this.instructor = null
     this.year = year
     this.quarter = quarter
-    this.registered_students = []
+    this.registeredStudents = []
     this.grades = {}
   }
 
   register_students (students) {
     for (const student of students) {
-      this.registered_students.push(student)
-      student.course_list.push(this)
+      this.registeredStudents.push(student)
+      student.courseList.push(this)
     }
   }
 
   get_students () {
-    return this.registered_students
+    return this.registeredStudents;
   }
 
   submit_grade (student, grade) {
